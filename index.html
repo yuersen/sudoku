@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f8f7ef">
+<title>小小数独岛</title>
+<style>
+:root{--paper:#f8f7ef;--ink:#293f38;--muted:#6b7c71;--green:#276b53;--mint:#e2efcf;--peach:#fbe3d5;--lilac:#ebe5f5;--line:#dce1d4;--white:#fffef9;--error:#ad453f;--dock-height:230px;font-family:"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--paper)}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);background-image:radial-gradient(#c6d0bc70 .8px,transparent .8px);background-size:18px 18px}button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}button:disabled{cursor:default;opacity:.4}button:focus-visible{outline:3px solid #b17626;outline-offset:4px}button{min-height:44px}button:active:not(:disabled){transform:translateY(2px)}[hidden]{display:none!important}.shell{max-width:480px;margin:auto;padding:24px 20px 30px;min-height:100vh;min-height:100dvh}.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px;letter-spacing:1px}.brand-icon{display:grid;grid-template-columns:repeat(2,8px);gap:3px;transform:rotate(-8deg)}.brand-icon i{height:8px;border-radius:2px;background:var(--green)}.brand-icon i:last-child{background:#e1ad63}.edition{margin-left:auto;font-size:10px;font-weight:600;color:var(--muted);letter-spacing:2px}.hero{text-align:center;padding:32px 0 23px}.eyebrow{font-size:11px;letter-spacing:3px;color:var(--green);font-weight:700}.hero h1{font-size:38px;letter-spacing:2px;line-height:1.3;margin:14px 0 8px;font-weight:900}.hero h1 span{display:inline-block;position:relative;z-index:0}.hero h1 span:after{content:"";position:absolute;bottom:0;left:-3px;right:-3px;height:13px;background:#dcebbf;z-index:-1;transform:rotate(-3deg)}.hero p{font-size:13px;color:var(--muted);line-height:1.8;margin:0}.island{position:relative;height:152px;margin:15px auto 0;width:250px}.island:after{content:"";position:absolute;width:212px;height:30px;background:#d8e4cb;border-radius:50%;bottom:9px;left:18px;z-index:0}.toy-grid{position:absolute;top:8px;left:62px;display:grid;grid-template-columns:repeat(2,53px);gap:6px;padding:9px;border:2px solid #385d45;border-radius:20px;background:#fffdf4;transform:rotate(-9deg);box-shadow:5px 6px 0 #bdd1ae;z-index:1}.toy-grid span{height:48px;border-radius:10px;background:var(--mint);display:grid;place-items:center;font-size:30px;font-weight:800}.toy-grid span:nth-child(2){background:var(--peach)}.toy-grid span:nth-child(3){background:var(--lilac)}.toy-grid span:nth-child(4){background:#f8edbb}.spark{position:absolute;color:#bb872f;font-size:26px;z-index:2}.spark.a{left:20px;top:30px}.spark.b{right:13px;top:68px;font-size:18px}.leaf{position:absolute;right:21px;top:3px;font-size:28px;transform:rotate(15deg)}.section-label{display:flex;justify-content:space-between;align-items:center;font-size:15px;font-weight:800;margin:6px 0 13px}.section-label small{font-size:11px;font-weight:400;color:var(--muted)}.levels{display:grid;gap:12px}.level{display:flex;align-items:center;text-align:left;width:100%;padding:16px;border:1.5px solid #c7d8b9;border-radius:20px;background:var(--mint);box-shadow:0 3px 0 #c5d6b6;transition:transform .2s}.level:hover{transform:translateY(-2px)}.level[data-level="medium"]{background:var(--peach);border-color:#e9cdbb;box-shadow:0 3px 0 #e9cdbb}.level[data-level="hard"]{background:var(--lilac);border-color:#d6cce5;box-shadow:0 3px 0 #d6cce5}.level-emoji{font-size:30px;width:52px}.level-copy{flex:1}.level strong{font-size:19px;letter-spacing:1px}.size-tag{font-size:11px;letter-spacing:1px;padding:4px 7px;border:1px solid #52664c30;border-radius:7px;margin-left:8px;vertical-align:2px}.level p{font-size:11px;color:#566458;margin:6px 0 0}.arrow{height:34px;width:34px;border-radius:50%;background:#ffffff70;display:grid;place-items:center;font-size:20px}.continue{width:100%;border:0;border-radius:16px;background:var(--green);color:white;font-weight:700;margin:0 0 18px;padding:13px}.howto{background:#fffef9b5;border:1px dashed #bfcab5;border-radius:17px;padding:16px;margin-top:22px;display:flex;gap:12px}.howto .icon{font-size:22px}.howto h2{font-size:13px;margin:0 0 5px}.howto p{font-size:12px;line-height:1.9;color:var(--muted);margin:0}.footer{text-align:center;font-size:10px;color:var(--muted);letter-spacing:1px;margin-top:24px}.storage-note{font-size:12px;color:#93542e;line-height:1.6;background:#fff1da;padding:10px;border-radius:10px;margin:12px 0}.game-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.icon-button{min-width:44px;background:var(--white);border:1px solid var(--line);border-radius:14px;font-size:22px}.game-title{text-align:center}.game-title h1{font-size:19px;margin:0}.game-title small{color:var(--muted);font-size:11px}.timer{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums;min-width:60px;text-align:right}.game-copy{margin:24px 0 14px;text-align:center}.game-copy strong{font-size:21px}.game-copy p{font-size:12px;color:var(--muted);margin:8px 0}.board-wrap{background:var(--white);padding:8px;border:1px solid var(--line);border-radius:18px;box-shadow:0 5px 0 #e4e7db}.board{display:grid;grid-template-columns:repeat(var(--size),minmax(0,1fr));border:2px solid #526857;border-radius:8px;overflow:hidden;aspect-ratio:1}.cell{position:relative;border:0;border-right:1px solid #d8ded2;border-bottom:1px solid #d8ded2;background:var(--white);min-height:0;min-width:0;padding:0;font-size:clamp(18px,5.5vw,27px);font-weight:650;color:var(--green);border-radius:0}.cell.given{color:var(--ink);font-weight:850}.cell.peer{background:#f0f4e7}.cell.same{background:#e1edd2}.cell.selected{background:#d6e7b7;box-shadow:inset 0 0 0 3px #528048;z-index:1}.cell.wrong{color:var(--error);background:#fce9e1}.cell.wrong:after{content:"·";position:absolute;right:3px;top:0;font-size:20px;color:var(--error)}.cell.box-right{border-right:2px solid #526857}.cell.box-bottom{border-bottom:2px solid #526857}.cell.last-col{border-right:0}.cell.last-row{border-bottom:0}.cell.pop{animation:pop .22s ease-out}.cell.shake{animation:shake .25s ease-in-out}.selection{font-size:11px;color:var(--muted);text-align:center;margin:13px 0 0;min-height:18px}.feedback{margin:15px 0 0;padding:13px 14px;background:#edf1e2;border-radius:14px;line-height:1.7;font-size:13px;min-height:48px}.practice{font-size:11px;color:var(--muted);text-align:center;margin:12px 0}.game-bottom{display:flex;justify-content:center;margin:10px 0}.text-button{border:0;background:transparent;text-decoration:underline;text-underline-offset:4px;color:var(--muted);font-size:12px;padding:10px}#game{padding-bottom:calc(var(--dock-height) + 20px)}.dock{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,480px);background:#fffef9f5;border:1px solid #dce1d4;border-bottom:0;border-radius:24px 24px 0 0;padding:15px 20px calc(15px + env(safe-area-inset-bottom));box-shadow:0 -6px 26px #354c3c0b;z-index:5}.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:12px}.tool{border:1px solid var(--line);background:#f6f6ed;border-radius:12px;font-size:13px;font-weight:600}.tool.hint{background:#f8eebf;border-color:#e9da9f}.numbers{display:grid;gap:8px;grid-template-columns:repeat(var(--keys),minmax(0,1fr))}.number{height:49px;border:1px solid #c7d8b9;border-bottom:3px solid #bbcfaa;border-radius:12px;background:#e5efda;font-weight:800;font-size:24px;color:#315e42}.dock-note{text-align:center;color:var(--muted);font-size:10px;margin:10px 0 0}dialog{border:1px solid #d7deca;border-radius:26px;padding:27px 24px;background:var(--white);color:var(--ink);width:calc(100% - 40px);max-width:370px;box-shadow:0 25px 100px #233b3b30;text-align:center}dialog::backdrop{background:#233b3b55;backdrop-filter:blur(3px)}.modal-icon{font-size:45px}.modal-title{font-size:25px;margin:15px 0 12px}.modal-body{font-size:14px;color:var(--muted);line-height:1.9;white-space:pre-line}.modal-actions{display:grid;gap:10px;margin-top:22px}.primary{background:var(--green);color:white;border:0;border-radius:13px;padding:13px;font-weight:700}.secondary{background:#eff1e6;border:1px solid var(--line);border-radius:13px;padding:11px}.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:20}.confetti i{position:absolute;top:-30px;font-style:normal;font-size:23px;animation:fall 2.7s ease-in forwards}.paused-label{font-size:10px;display:block;color:var(--muted)}@keyframes pop{50%{font-size:32px}}@keyframes shake{25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}@keyframes fall{to{transform:translateY(105vh) rotate(300deg);opacity:0}}@media(min-width:700px){.shell{padding-top:36px}.hero{padding-top:35px}}@media(max-width:350px){.shell{padding-left:16px;padding-right:16px}.hero h1{font-size:34px}.dock{padding-left:16px;padding-right:16px}.level{padding:14px}.board-wrap{padding:5px}.game-title h1{font-size:17px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.confetti{display:none}}
+</style>
+</head>
+<body>
+<main class="shell">
+<div class="brand"><span class="brand-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span>小小数独岛<span class="edition">一点点思考 · 大大的快乐</span></div>
+<p id="storage-note" class="storage-note" role="status" hidden></p>
+<section id="home">
+<header class="hero"><div class="eyebrow">欢迎来到你的数字小天地</div><h1>小脑袋，<br>来场<span>大冒险</span>！</h1><p>不用着急，每一格都有小发现。</p><div class="island" aria-hidden="true"><span class="spark a">✦</span><span class="leaf">🌱</span><div class="toy-grid"><span>1</span><span>2</span><span>3</span><span>4</span></div><span class="spark b">✧</span></div></header>
+<button id="continue" class="continue" hidden>继续上次的冒险 →</button>
+<div class="section-label">今天，挑战哪一座岛？<small>从简单开始也很棒</small></div>
+<div class="levels">
+<button class="level" data-level="easy"><span class="level-emoji" aria-hidden="true">🌱</span><span class="level-copy"><strong>简单</strong><span class="size-tag">4 × 4</span><p>新芽小岛 · 认识数字的好朋友</p><p id="best-easy">最佳：等你来挑战</p></span><span class="arrow" aria-hidden="true">↗</span></button>
+<button class="level" data-level="medium"><span class="level-emoji" aria-hidden="true">🌼</span><span class="level-copy"><strong>中等</strong><span class="size-tag">6 × 6</span><p>花花小岛 · 再多思考一点点</p><p id="best-medium">最佳：等你来挑战</p></span><span class="arrow" aria-hidden="true">↗</span></button>
+<button class="level" data-level="hard"><span class="level-emoji" aria-hidden="true">🚀</span><span class="level-copy"><strong>困难</strong><span class="size-tag">9 × 9</span><p>星光小岛 · 小小高手来集合</p><p id="best-hard">最佳：等你来挑战</p></span><span class="arrow" aria-hidden="true">↗</span></button>
+</div>
+<aside class="howto"><span class="icon" aria-hidden="true">💡</span><div><h2>一个小规则，就能出发</h2><p>每行、每列、每个粗线框里，数字都不重复。<br>点一个格子，再点数字。填错了也没关系！</p></div></aside>
+<footer class="footer">不用登录 · 没有广告 · 随时安心玩</footer>
+</section>
+<section id="game" hidden>
+<div class="game-head" style="margin-top:24px"><button id="back" class="icon-button" aria-label="保存并返回首页">←</button><div class="game-title"><h1 id="game-title"></h1><small id="game-subtitle"></small></div><div class="timer"><span id="timer">00:00</span><span id="paused" class="paused-label" hidden>已暂停</span></div></div>
+<div class="game-copy"><strong>每一格，都是小进步。</strong><p id="rule"></p></div>
+<div class="board-wrap"><div id="board" class="board" role="group" aria-label="数独棋盘"></div></div>
+<p id="selection" class="selection">先选一个空格，再点下面的数字</p>
+<div id="feedback" class="feedback" aria-live="polite">🌱 慢慢来，小岛的冒险现在开始！</div>
+<p id="practice" class="practice"></p>
+<div class="game-bottom"><button id="restart" class="text-button">↻ 重新开始这道题</button><button id="show-result" class="text-button" hidden>查看完成结果</button></div>
+</section>
+</main>
+<div id="keypad" class="dock" hidden><div class="tools"><button id="undo" class="tool">↶ 撤销</button><button id="erase" class="tool">⌫ 擦除</button><button id="hint" class="tool hint">✦ 帮我填一格</button></div><div id="numbers" class="numbers"></div><p class="dock-note">大胆试一试，填错也可以重新来</p></div>
+<dialog id="modal" aria-labelledby="modal-title" aria-describedby="modal-body"><div id="modal-icon" class="modal-icon" aria-hidden="true">🌱</div><h2 id="modal-title" class="modal-title"></h2><p id="modal-body" class="modal-body"></p><div class="modal-actions"><button id="modal-confirm" class="primary"></button><button id="modal-cancel" class="secondary"></button></div></dialog>
+<div id="confetti" class="confetti" aria-hidden="true"></div>
+<!-- 数独核心与界面分区维护，全部内联，不产生任何外部运行依赖。 -->
+<script id="sudoku-core">
+(() => {
+  'use strict';
+
+  const CONFIG = Object.freeze({
+    easy: Object.freeze({ size: 4, boxRows: 2, boxCols: 2, label: '简单' }),
+    medium: Object.freeze({ size: 6, boxRows: 2, boxCols: 3, label: '中等' }),
+    hard: Object.freeze({ size: 9, boxRows: 3, boxCols: 3, label: '困难' })
+  });
+  // 基础题离线生成并经独立求解器验证，运行时仅进行保解变换。
+  const BANK = Object.freeze(Object.fromEntries(Object.entries({
+    easy: ['1004301223004020', '1230301200404100', '0234041020400023', '0204340020014103', '0030341223014000', '1200041200410120'],
+    medium: ['003056450123034060501234000600602040', '120050406103030561560034300610002300', '000450006123234501061200005010612040', '023050050103234501501004005002610340', '003450006103200501561200340610600045', '103056056023200060501030045610002045'],
+    hard: ['000006789000700020080100006004000890500001200890030500005670902000002305910340608', '003056089050000100700003406004567001560001200000030007045008900000002040912000670', '003456700450000100080003050030507000007000230891000000005678902000912005000045070', '100006009056709123080000000200000800060001004001034507045000912000900045900045600', '023400700406709000080100056230567800567090004000000060300670012608000040000000008', '100056089006009000700123056034507090500000000890000007000008002608912000910340000']
+  }).map(([level, boards]) => [level, Object.freeze(boards.map(board => Object.freeze([...board].map(Number))))])));
+
+  const validBoard = (board, n) => Array.isArray(board) && board.length === n * n && Array.from(board).every(v => Number.isInteger(v) && v >= 0 && v <= n);
+  const complete = game => game.values.every((v, i) => v === game.solution[i]);
+
+  function solve(board, config, budget = 100000) {
+    const result = { count: 0, solution: null, exhausted: false };
+    if (!config) return result;
+    const { size: n, boxRows: br, boxCols: bc } = config;
+    if (![4, 6, 9].includes(n) || !Number.isInteger(br) || !Number.isInteger(bc) || br < 1 || bc < 1 || br * bc !== n || n % br || n % bc || !validBoard(board, n)) return result;
+    if (!Number.isFinite(budget) || budget < 0) budget = 0;
+    const a = [...board], rows = Array(n).fill(0), cols = Array(n).fill(0), boxes = Array(n).fill(0);
+    const full = (1 << n) - 1;
+    const boxOf = i => Math.floor(Math.floor(i / n) / br) * (n / bc) + Math.floor(i % n / bc);
+    for (let i = 0; i < a.length; i++) {
+      if (!a[i]) continue;
+      const row = Math.floor(i / n), col = i % n, box = boxOf(i), bit = 1 << (a[i] - 1);
+      if ((rows[row] | cols[col] | boxes[box]) & bit) return result;
+      rows[row] |= bit; cols[col] |= bit; boxes[box] |= bit;
+    }
+    let visited = 0;
+    function search() {
+      if (result.count >= 2 || result.exhausted) return;
+      if (visited++ >= budget) { result.exhausted = true; return; }
+      let index = -1, mask = 0, fewest = n + 1;
+      for (let i = 0; i < a.length; i++) {
+        if (a[i]) continue;
+        const choices = full & ~(rows[Math.floor(i / n)] | cols[i % n] | boxes[boxOf(i)]);
+        let bits = choices, count = 0;
+        while (bits) { bits &= bits - 1; count++; }
+        if (!count) return;
+        if (count < fewest) { index = i; mask = choices; fewest = count; }
+        if (count === 1) break;
+      }
+      if (index < 0) { result.count++; result.solution ||= [...a]; return; }
+      const row = Math.floor(index / n), col = index % n, box = boxOf(index);
+      while (mask && result.count < 2 && !result.exhausted) {
+        const bit = mask & -mask;
+        mask ^= bit;
+        a[index] = Math.log2(bit) + 1;
+        rows[row] |= bit; cols[col] |= bit; boxes[box] |= bit;
+        search();
+        rows[row] ^= bit; cols[col] ^= bit; boxes[box] ^= bit;
+        a[index] = 0;
+      }
+    }
+    search();
+    return result;
+  }
+
+  function generate(level, rng = Math.random) {
+    if (!Object.hasOwn(CONFIG, level)) throw new RangeError('未知难度');
+    const { size: n, boxRows: br, boxCols: bc } = CONFIG[level];
+    const shuffle = list => {
+      for (let i = list.length - 1; i > 0; i--) {
+        const j = Math.floor(rng() * (i + 1));
+        [list[i], list[j]] = [list[j], list[i]];
+      }
+      return list;
+    };
+    const range = length => Array.from({ length }, (_, i) => i);
+    const grouped = width => shuffle(range(n / width)).flatMap(group => shuffle(range(width)).map(i => group * width + i));
+    const base = BANK[level][Math.floor(rng() * BANK[level].length)];
+    const rows = grouped(br), cols = grouped(bc), digits = [0, ...shuffle(range(n).map(i => i + 1))];
+    const givens = rows.flatMap(row => cols.map(col => digits[base[row * n + col]]));
+    return { givens, solution: solve(givens, CONFIG[level]).solution };
+  }
+
+  function createGame(level, rng = Math.random) {
+    const { givens, solution } = generate(level, rng);
+    return { version: 1, level, givens, solution, values: [...givens], selected: -1, history: [], elapsedMs: 0, hints: 0, eligible: true, completed: false };
+  }
+
+  function fill(game, index, value) {
+    const n = CONFIG[game.level].size;
+    if (game.completed || !Number.isInteger(index) || index < 0 || index >= n * n || game.givens[index] || !Number.isInteger(value) || value < 0 || value > n || game.values[index] === value) return false;
+    game.history.push({ index, before: game.values[index], after: value });
+    if (game.history.length > 500) game.history.shift();
+    game.values[index] = value;
+    game.completed = complete(game);
+    return true;
+  }
+
+  function undo(game) {
+    if (game.completed || !game.history.length) return false;
+    const { index, before } = game.history.pop();
+    game.values[index] = before;
+    game.selected = index;
+    return true;
+  }
+
+  function hint(game) {
+    if (game.completed) return false;
+    const needsHint = i => Number.isInteger(i) && i >= 0 && i < game.values.length && !game.givens[i] && game.values[i] !== game.solution[i];
+    const index = needsHint(game.selected) ? game.selected : game.values.findIndex((_, i) => needsHint(i));
+    if (index < 0) return false;
+    game.hints++;
+    game.eligible = false;
+    game.selected = index;
+    return fill(game, index, game.solution[index]);
+  }
+
+  function restart(game) {
+    game.values = [...game.givens];
+    game.selected = -1;
+    game.history = [];
+    game.elapsedMs = 0;
+    game.hints = 0;
+    game.eligible = false;
+    game.completed = false;
+    return game;
+  }
+
+  function restore(raw) {
+    if (!raw || typeof raw !== 'object' || Array.isArray(raw) || raw.version !== 1 || typeof raw.level !== 'string' || !Object.hasOwn(CONFIG, raw.level)) return null;
+    const config = CONFIG[raw.level], n = config.size;
+    if (!validBoard(raw.givens, n) || !validBoard(raw.values, n) || typeof raw.elapsedMs !== 'number' || !Number.isFinite(raw.elapsedMs) || raw.elapsedMs < 0 || !Number.isSafeInteger(raw.hints) || raw.hints < 0) return null;
+    if (raw.givens.some((v, i) => v && raw.values[i] !== v)) return null;
+    const solved = solve(raw.givens, config);
+    if (solved.exhausted || solved.count !== 1) return null;
+    const game = {
+      version: 1, level: raw.level, givens: [...raw.givens], solution: solved.solution, values: [...raw.values],
+      selected: Number.isInteger(raw.selected) && raw.selected >= -1 && raw.selected < n * n ? raw.selected : -1,
+      history: [], elapsedMs: raw.elapsedMs, hints: raw.hints, eligible: raw.eligible === true && raw.hints === 0, completed: false
+    };
+    // 从当前棋盘反向重放，不能让损坏的历史篡改固定格或凭空写入值。
+    if (Array.isArray(raw.history) && raw.history.length <= 500) {
+      const prior = [...game.values];
+      let valid = true;
+      for (let h = raw.history.length - 1; h >= 0; h--) {
+        const step = raw.history[h];
+        if (!step || !Number.isInteger(step.index) || step.index < 0 || step.index >= n * n || game.givens[step.index] || !Number.isInteger(step.before) || step.before < 0 || step.before > n || !Number.isInteger(step.after) || step.after < 0 || step.after > n || step.before === step.after || prior[step.index] !== step.after) { valid = false; break; }
+        prior[step.index] = step.before;
+      }
+      if (valid) game.history = raw.history.map(({ index, before, after }) => ({ index, before, after }));
+    }
+    game.completed = complete(game);
+    return game;
+  }
+
+  globalThis.SudokuCore = { CONFIG, BANK, solve, generate, createGame, fill, undo, hint, restart, restore };
+})();
+
+</script>
+<script>
+'use strict';
+(() => {
+  const C = globalThis.SudokuCore;
+  const $ = id => document.getElementById(id);
+  const SAVE = 'little-sudoku-save-v1', BEST = 'little-sudoku-best-v1';
+  const names = {easy:'新芽小岛', medium:'花花小岛', hard:'星光小岛'};
+  let state = null, best = {}, inGame = false, startedAt = null, dialogAction = null, dialogCancel = null, lastFocus = null, lastPuzzle = '';
+  function storageError() { $('storage-note').hidden = false; $('storage-note').textContent = '当前浏览器无法保存，关闭后进度可能丢失。你仍然可以安心玩这一局。'; }
+  function read(key) { try { const value = localStorage.getItem(key); return value ? JSON.parse(value) : null; } catch { storageError(); return null; } }
+  function write(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch { storageError(); } }
+  function elapsed() { return (state?.elapsedMs || 0) + (startedAt === null ? 0 : performance.now() - startedAt); }
+  function settle() { if (state && startedAt !== null) state.elapsedMs += performance.now() - startedAt; startedAt = null; }
+  function clock() { const active = state && inGame && !state.completed && !document.hidden && !$('modal').open; if (!active) settle(); else if (startedAt === null) startedAt = performance.now(); $('paused').hidden = !!active || !state || state.completed; }
+  function save() { if (!state) return; const data = {...state, elapsedMs:elapsed()}; delete data.solution; write(SAVE, data); }
+  function time(ms) { const s = Math.floor(ms / 1000); return `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`; }
+  function announce(text) { $('feedback').textContent = text; }
+  function home() { settle(); save(); inGame = false; $('home').hidden = false; $('game').hidden = true; $('keypad').hidden = true; $('continue').hidden = !state || state.completed; for (const level of Object.keys(names)) $('best-'+level).textContent = best[level] === undefined ? '最佳：等你来挑战' : '无提示最佳：'+time(best[level]); clock(); }
+  function syncDock() { if (inGame) document.documentElement.style.setProperty('--dock-height', $('keypad').getBoundingClientRect().height+'px'); }
+  function openGame() { inGame = true; $('home').hidden = true; $('game').hidden = false; $('keypad').hidden = false; const cfg = C.CONFIG[state.level]; $('game-title').textContent = names[state.level]; $('game-subtitle').textContent = `${cfg.label} · ${cfg.size} × ${cfg.size}`; $('rule').textContent = `把 1–${cfg.size} 放进格子，每行、每列、每宫不重复`; $('board').style.setProperty('--size', cfg.size); $('board').replaceChildren();
+    for (let i=0;i<cfg.size**2;i++) { const cell=document.createElement('button'); cell.type='button'; cell.className='cell'; cell.dataset.index=i; cell.addEventListener('click',()=>select(i)); $('board').append(cell); }
+    $('numbers').style.setProperty('--keys', cfg.size===9?5:cfg.size===6?3:4); $('numbers').replaceChildren();
+    for(let n=1;n<=cfg.size;n++){const button=document.createElement('button');button.className='number';button.textContent=n;button.setAttribute('aria-label','填入数字 '+n);button.addEventListener('click',()=>input(n));$('numbers').append(button);}
+    render(); clock(); syncDock(); window.scrollTo(0,0); }
+  function begin(level) { settle(); for(let attempt=0;attempt<5;attempt++){state=C.createGame(level);if(state.givens.join('')!==lastPuzzle)break;}lastPuzzle=state.givens.join('');openGame();announce('🌱 慢慢来，小岛的冒险现在开始！');save(); }
+  function select(index, focus=false) { state.selected=index; render(); if(focus)$('board').children[index].focus(); save(); }
+  function render() { if(!state)return; const cfg=C.CONFIG[state.level],n=cfg.size,s=state.selected,sr=Math.floor(s/n),sc=s%n;
+    [...$('board').children].forEach((cell,i)=>{const r=Math.floor(i/n),c=i%n,value=state.values[i],given=!!state.givens[i],wrong=!!value&&value!==state.solution[i];const peer=s>=0&&(r===sr||c===sc||(Math.floor(r/cfg.boxRows)===Math.floor(sr/cfg.boxRows)&&Math.floor(c/cfg.boxCols)===Math.floor(sc/cfg.boxCols)));cell.className=['cell',given?'given':'',peer?'peer':'',s>=0&&value&&value===state.values[s]?'same':'',i===s?'selected':'',wrong?'wrong':'',(c+1)%cfg.boxCols===0?'box-right':'',(r+1)%cfg.boxRows===0?'box-bottom':'',c===n-1?'last-col':'',r===n-1?'last-row':''].filter(Boolean).join(' ');cell.textContent=value||'';cell.setAttribute('aria-label',`第${r+1}行，第${c+1}列，${value||'空格'}${given?'，题目数字':wrong?'，需要再想一想':''}`);cell.setAttribute('aria-pressed',String(i===s));cell.tabIndex=i===(s<0?0:s)?0:-1;});
+    $('selection').textContent=s<0?'先选一个空格，再点下面的数字':`第 ${sr+1} 行 · 第 ${sc+1} 列${state.givens[s]?' · 这是题目给出的数字':''}`;
+    $('timer').textContent=time(elapsed());$('practice').textContent=state.eligible?'无提示新局 · 可以挑战最佳时间':`轻松练习局 · 已提示 ${state.hints} 次 · 不更新最佳时间`;
+    $('undo').disabled=state.completed||!state.history.length;$('erase').disabled=state.completed||s<0||!!state.givens[s]||!state.values[s];$('hint').disabled=state.completed;[...$('numbers').children].forEach(b=>b.disabled=state.completed);$('show-result').hidden=!state.completed;
+  }
+  function afterChange(index, message) { render(); if(index>=0){const cell=$('board').children[index];cell.classList.add(state.values[index]&&state.values[index]!==state.solution[index]?'shake':'pop');}announce(message); if(state.completed){settle();if(state.eligible&&(best[state.level]===undefined||state.elapsedMs<best[state.level])){best[state.level]=state.elapsedMs;write(BEST,best);}save();clock();result(true);}else save(); }
+  function input(value) { if(!state||state.completed)return;const i=state.selected;if(i<0){announce('☝ 先选一个空格，再选数字吧。');return;}if(state.givens[i]){announce('🌼 这是题目给出的数字，试试其他空格吧。');return;}if(C.fill(state,i,value))afterChange(i,value===0?'🍃 擦干净了，再想一想吧。':value===state.solution[i]?'✨ 很棒，又找到一个数字！':'🌱 这个数字还不太合适，再想一想，你可以的！'); }
+  function showModal({title,body,confirm,cancel='再想想',icon='🌱',action,onCancel}){lastFocus=document.activeElement;$('modal-title').textContent=title;$('modal-body').textContent=body;$('modal-confirm').textContent=confirm;$('modal-cancel').textContent=cancel;$('modal-icon').textContent=icon;dialogAction=action;dialogCancel=onCancel;$('modal').showModal();clock();save();$('modal-cancel').focus();}
+  function closeModal(confirmed){const action=confirmed?dialogAction:dialogCancel;dialogAction=null;dialogCancel=null;$('modal').close();if(lastFocus?.isConnected)lastFocus.focus();if(action)action();clock();}
+  function celebrate(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;$('confetti').replaceChildren();for(let i=0;i<25;i++){const p=document.createElement('i');p.textContent=['✦','●','★'][i%3];p.style.left=Math.random()*100+'%';p.style.color=['#75a563','#e8ac57','#ba9dd3'][i%3];p.style.animationDelay=Math.random()*.5+'s';$('confetti').append(p);}setTimeout(()=>$('confetti').replaceChildren(),3400);}
+  function result(animation=false){showModal({title:'你完成啦！',icon:'🏆',body:`每一次认真思考，都值得庆祝。\n用时 ${time(state.elapsedMs)} · 提示 ${state.hints} 次\n${state.eligible?'太棒了！继续发现数字的乐趣吧。':'这次练习也是很棒的进步！'}`,confirm:'再来一局 →',cancel:'返回小岛首页',action:()=>begin(state.level),onCancel:home});if(animation)celebrate();}
+  document.querySelectorAll('[data-level]').forEach(button=>button.addEventListener('click',()=>{const level=button.dataset.level;if(state&&!state.completed)showModal({title:'开启新的冒险？',body:'现在的进度会被新游戏替换。\n如果还想继续，可以点“再想想”。',confirm:'开始新游戏',action:()=>begin(level)});else begin(level);}));
+  $('continue').addEventListener('click',()=>{openGame();announce('🌼 欢迎回来！我们接着上次的小发现。');});$('back').addEventListener('click',home);
+  $('erase').addEventListener('click',()=>input(0));$('undo').addEventListener('click',()=>{if(C.undo(state))afterChange(state.selected,'↶ 已退回上一步，慢慢想就好。');});
+  $('hint').addEventListener('click',()=>{if(C.hint(state))afterChange(state.selected,'💡 帮你填好一格啦，看看它和周围数字的关系。');});
+  $('restart').addEventListener('click',()=>showModal({title:'再试一次这道题？',body:'清空你填的数字，重新计时。\n这是练习局，不更新最佳时间。',confirm:'重新开始',action:()=>{settle();C.restart(state);openGame();announce('🌱 熟悉的小岛，也有新的发现。');save();}}));
+  $('show-result').addEventListener('click',()=>result());$('modal-confirm').addEventListener('click',()=>closeModal(true));$('modal-cancel').addEventListener('click',()=>closeModal(false));$('modal').addEventListener('cancel',event=>{event.preventDefault();closeModal(false);});
+  document.addEventListener('keydown',event=>{if(!inGame||!state||$('modal').open)return;const n=C.CONFIG[state.level].size;let i=state.selected<0?0:state.selected;const moves={ArrowLeft:-1,ArrowRight:1,ArrowUp:-n,ArrowDown:n};if(event.key in moves){event.preventDefault();select((i+moves[event.key]+n*n)%(n*n),true);}else if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='z'){event.preventDefault();if(C.undo(state))afterChange(state.selected,'↶ 已退回上一步。');}else if(!event.ctrlKey&&!event.metaKey&&!event.altKey&&/^[1-9]$/.test(event.key)&&Number(event.key)<=n){event.preventDefault();input(Number(event.key));}else if(event.key==='Backspace'||event.key==='Delete'){event.preventDefault();input(0);}});
+  document.addEventListener('visibilitychange',()=>{clock();save();});window.addEventListener('pagehide',()=>{settle();save();});window.addEventListener('pageshow',clock);window.addEventListener('resize',syncDock);if('ResizeObserver'in window)new ResizeObserver(syncDock).observe($('keypad'));
+  setInterval(()=>{if(inGame&&state)$('timer').textContent=time(elapsed());},250);setInterval(()=>{if(startedAt!==null)save();},5000);
+  const raw=read(SAVE);if(raw){state=C.restore(raw);if(!state){$('storage-note').hidden=false;$('storage-note').textContent='上次的进度无法读取，开始一场新的冒险吧。最佳成绩会单独保留。';}}
+  const savedBest=read(BEST);if(savedBest&&typeof savedBest==='object')for(const level of Object.keys(names)){if(Number.isFinite(savedBest[level])&&savedBest[level]>=0)best[level]=savedBest[level];}home();
+})();
+</script>
+</body>
+</html>
